@@ -14,15 +14,45 @@ class App extends Component {
         active: true,
         finishDate: null
       },
+      {
+        id: 1,
+        text: 'zagrać w grę',
+        date: '2018-03-15',
+        important: true,
+        active: true,
+        finishDate: null
+      },
     ]
   }
 
   deleteTask = (id) => {
     console.log('delete elementu o id ' + id);
+    // const tasks = [...this.state.tasks];
+    // const index = tasks.findIndex(task => task.id === id);
+    // tasks.splice(index, 1);
+    // this.setState({
+    //   tasks
+    // })
+
+    let tasks = [...this.state.tasks];
+    tasks = tasks.filter(task => task.id !== id);
+    this.setState({
+      tasks
+    })
   }
 
   changeTaskStatus = (id) => {
     console.log('change elementu o id ' + id);
+    let tasks = Array.from(this.state.tasks);
+    tasks.forEach(task => {
+      if (task.id === id) {
+        task.active = false;
+        task.finishDate = new Date().getTime()
+      }
+    })
+    this.setState({
+      tasks
+    })
   }
 
   render() {
